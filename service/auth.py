@@ -9,7 +9,7 @@ class AuthService:
     def __init__(self, user_service: UserService):
         self.user_service = user_service
 
-    def generate_token (self, email, password, is_refresh=False):
+    def generate_token(self, email, password, is_refresh=False):
             user = self.user_service.get_by_email(email)
 
             if user is None:
@@ -53,7 +53,7 @@ class AuthService:
         data = jwt.decode(jwt=refresh_token, key=JWT_SECRET, algorithms=[JWT_ALGORITHM, ])
         email = data.get("email")
 
-        user = self.user_service.get_by_username(email)
+        user = self.user_service.get_by_email(email)
 
         if user is None:
             raise Exception()
