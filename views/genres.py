@@ -20,7 +20,6 @@ class GenresView(Resource):
         res = GenreSchema(many=True).dump(rs)
         return res, 200
 
-    @admin_required
     def post(self):
         request_json = request.json
         genre = genre_service.create(request_json)

@@ -20,7 +20,6 @@ class DirectorsView(Resource):
         res = DirectorSchema(many=True).dump(rs)
         return res, 200
 
-    @admin_required
     def post(self):
         request_json = request.json
         director = director_service.create(request_json)

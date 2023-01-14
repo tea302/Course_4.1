@@ -24,11 +24,9 @@ class AuthService:
 
             min30 = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
             data["exp"] = calendar.timegm(min30.timetuple())
-
             access_token = jwt.encode(data, JWT_SECRET, algorithm=JWT_ALGORITHM)
             days130 = datetime.datetime.utcnow() + datetime.timedelta(days=130)
             data["exp"] = calendar.timegm(days130.timetuple())
-
             refresh_token = jwt.encode(data, JWT_SECRET, algorithm=JWT_ALGORITHM)
             return {"access_token": access_token, "refresh_token": refresh_token}
 
@@ -49,12 +47,12 @@ class AuthService:
                 return False
         return True
 
-    def check_token(self, refresh_token):
-        data = jwt.decode(jwt=refresh_token, key=JWT_SECRET, algorithms=[JWT_ALGORITHM, ])
-        email = data.get("email")
-
-        user = self.user_service.get_by_email(email)
-
-        if user is None:
-            raise Exception()
-        return self.generate_token(email, user.password, is_refresh=True)
+    # def check_token(self, refresh_token):
+    #     data = jwt.decode(jwt=refresh_token, key=JWT_SECRET, algorithms=[JWT_ALGORITHM, ])
+    #     email = data.get("email")
+    #
+    #     user = self.user_service.get_by_email(email)
+    #
+    #     if user is None:
+    #         raise Exception()
+    #     return self.generate_token(email, user.password, is_refresh=True)

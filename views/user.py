@@ -14,7 +14,6 @@ class UserView(Resource):
         res = UserSchema(many=True).dump(rs)
         return res, 200
 
-
     def post(self):
         request_json = request.json
         user = user_service.create(request_json)
@@ -59,4 +58,3 @@ class UserView(Resource):
     def delete(self, rid):
         user_service.delete(rid)
         return "", 204
-

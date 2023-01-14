@@ -18,6 +18,8 @@ class RegisterView(Resource):
         user_service.create(request_json)
 
         return "User created", 201
+
+
 @auth_ns.route("/login")
 class AuthView(Resource):
     def post(self):
