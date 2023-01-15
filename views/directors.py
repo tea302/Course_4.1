@@ -43,7 +43,7 @@ def put(self, rid):
         director_service.update(request_json)
         return "", 204
 
-    @admin_required
-    def delete(self, rid):
-        director_service.delete(rid)
-        return "", 204
+
+def delete(self, rid):
+    director_service.delete(rid)
+    return "", 204

@@ -20,7 +20,6 @@ class GenresView(Resource):
         res = GenreSchema(many=True).dump(rs)
         return res, 200
 
-
     def post(self):
         request_json = request.json
         genre = genre_service.create(request_json)
@@ -44,7 +43,7 @@ def put(self, rid):
         genre_service.update(request_json)
         return "", 204
 
-    @admin_required
-    def delete(self, rid):
-        genre_service.delete(rid)
-        return "", 204
+
+def delete(self, rid):
+    genre_service.delete(rid)
+    return "", 204

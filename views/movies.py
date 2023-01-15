@@ -43,15 +43,13 @@ class MovieView(Resource):
         sm_d = MovieSchema().dump(b)
         return sm_d, 200
 
+    def put(self, bid):
+        req_json = request.json
+        if "id" not in req_json:
+            req_json["id"] = bid
+            movie_service.update(req_json)
+            return "", 204
 
-def put(self, bid):
-    req_json = request.json
-    if "id" not in req_json:
-        req_json["id"] = bid
-    movie_service.update(req_json)
-    return "", 204
-
-    @admin_required
     def delete(self, bid):
         movie_service.delete(bid)
         return "", 204
