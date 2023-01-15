@@ -14,10 +14,11 @@ class UserView(Resource):
         res = UserSchema(many=True).dump(rs)
         return res, 200
 
-    def post(self):
-        request_json = request.json
-        user = user_service.create(request_json)
-        return "", 201, {"location": f"/users/{user.id}"}
+
+def post(self):
+    request_json = request.json
+    user = user_service.create(request_json)
+    return "", 201, {"location": f"/users/{user.id}"}
 
 
 @user_ns.route("/password")
